@@ -27,7 +27,7 @@ bumpversion release                # bump version from .devX to release version
 rm -fr build dist                  # remove old builds
 python setup.py sdist bdist_wheel  # build package
 twine upload dist/*                # publish to PyPI
-bumpversion patch                  # add .devX tag
+bumpversion patch                  # add .devX tag again
 git push --tags                    # push tagged release to upstream
 ```
 
