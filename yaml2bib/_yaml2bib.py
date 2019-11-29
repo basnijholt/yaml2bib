@@ -212,7 +212,7 @@ def yaml2bib(
         help="Output file. (default: ``'dissertation.bib'``)",
     dois_yaml: str
         The `key: doi` YAML file, may contain wildcards (*).
-        (default: ``'bib.yaml'`` ,example: ``'*/*.yaml'``)
+        (default: ``'bib.yaml'``, example: ``'*/*.yaml'``)
     replacements_yaml: str
         Replacements to perform, might be ``None``.
         (default: ``None``, example: ``'replacements.yaml'``)
@@ -269,7 +269,7 @@ def yaml2bib(
     default="bib.yaml",
     help=(
         "The `key: doi` YAML file, may contain wildcards (*). "
-        "(default: 'bib.yaml' ,example: '*/*.yaml')"
+        "(default: 'bib.yaml', example: '*/*.yaml')"
     ),
 )
 @click.option(
