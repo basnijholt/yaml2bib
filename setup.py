@@ -1,0 +1,53 @@
+#!/usr/bin/env python
+
+import sys
+from setuptools import find_packages, setup
+
+
+if sys.version_info < (3, 6):
+    print("yaml2bib requires Python 3.6 or above.")
+    sys.exit(1)
+
+with open("README.md") as f:
+    readme = f.read()
+
+extras_require = dict(
+    docs=[
+        "sphinx",
+        "sphinx-rtd-theme",
+        "m2r",  # markdown support
+        "sphinxcontrib.apidoc",  # run sphinx-apidoc when building docs
+    ],
+    dev=["pre-commit", "bump2version"],
+)
+
+install_requires = ["crossrefapi", "diskcache", "requests", "pyyaml", "tqdm"]
+
+
+setup(
+    name="yaml2bib",
+    python_requires=">=3.6",
+    classifiers=[
+        "Intended Audience :: Science/Research",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
+        "Topic :: Scientific/Engineering",
+        "Topic :: Utilities",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.7",
+    ],
+    description="Client package for PBS and SLURM clusters with a headnode.",
+    long_description=readme,
+    long_description_content_type="text/markdown",
+    url="https://github.com/basnijholt/yaml2bib",
+    author="Bas Nijholt",
+    author_email="basnijholt@gmail.com",
+    license="MIT",
+    packages=find_packages("."),
+    entry_points={"console_scripts": ["yaml2bib=yaml2bib:yaml2bib"]},
+    install_requires=install_requires,
+    extras_require=extras_require,
+    zip_safe=False,
+)
