@@ -6,6 +6,7 @@ import glob
 import os
 from typing import Dict, List, Optional, Tuple
 
+import click
 import crossref.restful
 import diskcache
 import requests
@@ -213,58 +214,63 @@ def yaml2bib(
     write_output(entries, bib_files, bib_fname)
 
 
-def main():
-    import argparse
-
-    parser = argparse.ArgumentParser(
-        description="Convert a yaml file to bib file with the correct journal abbreviations."
+@click.command()
+@click.option(
+    "--bib_fname",
+    default="dissertation.bib",
+    help="Output file (default: 'dissertation.bib').",
+)
+@click.option(
+    "--dois_yaml",
+    default="*/*.yaml",
+    help="The `key: doi` YAML file, may contain wildcards (*) (default: '*/*.yaml').",
+)
+@click.option(
+    "--replacements_yaml",
+    default="replacements.yaml",
+    help="Replacements to perform, might be None (default: 'replacements.yaml').",
+)
+@click.option(
+    "--static_bib",
+    default="chapter_*/not_on_crossref.bib",
+    help="Static bib entries, might be None, may contain wildcards (*) (default: 'chapter_*/not_on_crossref.bib').",
+)
+@click.option(
+    "--doi2bib_database",
+    default="yaml2bib-doi2bib.db",
+    help="The doi2bib database folder 📁 to not query doi.org more than needed.",
+)
+@click.option(
+    "--crossref_database",
+    default="yaml2bib-crossref.db",
+    help="The Crossref database folder 📁 to not query crossref.org more than needed.",
+)
+@click.option(
+    "--email",
+    default="basnijholt@gmail.com",
+    help="E-mail 📧 for crossref.org, such that one can make more API calls without getting blocked.",
+)
+def cli(
+    bib_fname,
+    dois_yaml,
+    replacements_yaml,
+    static_bib,
+    doi2bib_database,
+    crossref_database,
+    email,
+):
+    click.echo(
+        "Convert a yaml file to bib file with the correct journal abbreviations."
     )
-    parser.add_argument(
-        "--bib_fname",
-        default="dissertation.bib",
-        help="Output file (default: 'dissertation.bib').",
-    )
-    parser.add_argument(
-        "--dois_yaml",
-        default="*/*.yaml",
-        help="The `key: doi` YAML file, may contain wildcards (*) (default: '*/*.yaml').",
-    )
-    parser.add_argument(
-        "--replacements_yaml",
-        default="replacements.yaml",
-        help="Replacements to perform, might be None (default: 'replacements.yaml').",
-    )
-    parser.add_argument(
-        "--static_bib",
-        default="chapter_*/not_on_crossref.bib",
-        help="Static bib entries, might be None, may contain wildcards (*) (default: 'chapter_*/not_on_crossref.bib').",
-    )
-
-    parser.add_argument(
-        "--doi2bib_database",
-        default="yaml2bib-doi2bib.db",
-        help="The doi2bib database folder 📁 to not query doi.org more than needed.",
-    )
-    parser.add_argument(
-        "--crossref_database",
-        default="yaml2bib-crossref.db",
-        help="The Crossref database folder 📁 to not query crossref.org more than needed.",
-    )
-    parser.add_argument(
-        "--email",
-        default="basnijholt@gmail.com",
-        help="E-mail 📧 for crossref.org, such that one can make more API calls without getting blocked.",
-    )
-    args = parser.parse_args()
 
     yaml2bib(
-        bib_fname=args.bib_fname,
-        dois_yaml=args.dois_yaml,
-        replacements_yaml=args.replacements_yaml,
-        static_bib=args.static_bib,
-        doi2bib_database=args.doi2bib_database,
-        crossref_database=args.crossref_database,
-        email=args.email,
+        bib_fname=bib_fname,
+        dois_yaml=dois_yaml,
+        replacements_yaml=replacements_yaml,
+        static_bib=static_bib,
+        doi2bib_database=doi2bib_database,
+        crossref_database=crossref_database,
+        email=email,
     )
 
 

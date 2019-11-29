@@ -21,7 +21,7 @@ extras_require = dict(
     dev=["pre-commit", "bump2version"],
 )
 
-install_requires = ["crossrefapi", "diskcache", "requests", "pyyaml", "tqdm"]
+install_requires = ["Click", "crossrefapi", "diskcache", "requests", "pyyaml", "tqdm"]
 
 
 setup(
@@ -38,7 +38,7 @@ setup(
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.7",
     ],
-    description="Client package for PBS and SLURM clusters with a headnode.",
+    description="Convert a yaml file containing (key -> DOI) pairs to bib file with the correct journal abbreviations.",
     long_description=readme,
     long_description_content_type="text/markdown",
     url="https://github.com/basnijholt/yaml2bib",
@@ -46,7 +46,7 @@ setup(
     author_email="basnijholt@gmail.com",
     license="MIT",
     packages=find_packages("."),
-    entry_points={"console_scripts": ["yaml2bib=yaml2bib:yaml2bib"]},
+    entry_points={"console_scripts": ["yaml2bib=yaml2bib:_yaml2bib.cli"]},
     install_requires=install_requires,
     extras_require=extras_require,
     zip_safe=False,
