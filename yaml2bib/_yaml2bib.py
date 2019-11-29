@@ -203,6 +203,50 @@ def yaml2bib(
     crossref_database: str,
     email: str,
 ) -> None:
+    """Convert a yaml file to bib file with the correct journal abbreviations.
+
+    Parameters
+    ----------
+    bib_fname: str
+        default="dissertation.bib",
+        help="Output file. (default: 'dissertation.bib')",
+    dois_yaml: str
+        The `key: doi` YAML file, may contain wildcards (*).
+        (default: 'bib.yaml' ,example: '*/*.yaml')
+    replacements_yaml: str
+        Replacements to perform, might be None.
+        (default: None, example: 'replacements.yaml')
+    static_bib: str
+        Static bib entries, might be None, may contain wildcards (*).
+        (default: None, example: 'chapter_*/not_on_crossref.bib')
+    doi2bib_database: str
+        The doi2bib database folder 📁 to not query doi.org more than needed.
+        (default: 'yaml2bib-doi2bib.db')
+    crossref_database: str
+        The Crossref database folder 📁 to not query crossref.org more than needed.
+        (default: 'yaml2bib-doi2bib.db')
+    email: str
+        E-mail 📧 for crossref.org, such that one can make more API calls without
+        getting blocked.(default: 'anonymous', example: 'bas@nijho.lt')
+
+    Returns
+    -------
+    None
+
+    Examples
+    --------
+    Example invocation for my [thesis](https://gitlab.kwant-project.org/qt/basnijholt/thesis-bas-nijholt)
+
+    .. code-block:: bash
+
+        yaml2bib \
+          --bib_fname "dissertation.bib" \
+          --dois_yaml "*/*.yaml" \
+          --replacements_yaml "replacements.yaml" \
+          --static_bib "chapter_*/not_on_crossref.bib" \
+          --email "bas@nijho.lt"
+
+    """
     etiquette = crossref.restful.Etiquette("publist", contact_email=email)
     works = crossref.restful.Works(etiquette=etiquette)
     dois = parse_doi_yaml(dois_yaml)
