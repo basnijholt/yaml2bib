@@ -208,16 +208,15 @@ def yaml2bib(
     Parameters
     ----------
     bib_fname: str
-        default="dissertation.bib",
-        help="Output file. (default: ``'dissertation.bib'``)",
+        Output file. (default: ``'dissertation.bib'``)
     dois_yaml: str
-        The `key: doi` YAML file, may contain wildcards (*).
+        The ``key: doi`` YAML file, may contain wildcards (``*``).
         (default: ``'bib.yaml'``, example: ``'*/*.yaml'``)
     replacements_yaml: str
         Replacements to perform, might be ``None``.
         (default: ``None``, example: ``'replacements.yaml'``)
     static_bib: str
-        Static bib entries, might be ``None``, may contain wildcards (*).
+        Static bib entries, might be ``None``, may contain wildcards (``*``).
         (default: ``None``, example: ``'chapter_*/not_on_crossref.bib'``)
     doi2bib_database: str
         The doi2bib database folder 📁 to not query doi.org more than needed.
@@ -238,7 +237,7 @@ def yaml2bib(
     Example invocation for my `thesis <https://gitlab.kwant-project.org/qt/basnijholt/thesis-bas-nijholt>`_.
 
     .. code-block:: bash
-        
+
         yaml2bib \\
           --bib_fname "dissertation.bib" \\
           --dois_yaml "*/*.yaml" \\
