@@ -27,7 +27,7 @@ install_requires = ["Click", "crossrefapi", "diskcache", "requests", "pyyaml", "
 setup(
     name="yaml2bib",
     python_requires=">=3.6",
-    version="0.1.0",
+    version="0.1.1.dev0",
     classifiers=[
         "Intended Audience :: Science/Research",
         "Operating System :: OS Independent",
