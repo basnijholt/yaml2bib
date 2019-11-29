@@ -226,7 +226,7 @@ def yaml2bib(
         (default: ``'yaml2bib-doi2bib.db'``)
     email: str
         E-mail 📧 for crossref.org, such that one can make more API calls without
-        getting blocked.(default: ``'anonymous'``, example: ``'bas@nijho.lt'``)
+        getting blocked. (default: ``'anonymous'``, example: ``'bas@nijho.lt'``)
 
     Returns
     -------
