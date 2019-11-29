@@ -239,7 +239,7 @@ def yaml2bib(
 
     .. code-block:: bash
         
-        yaml2bib \
+        yaml2bib \\
           --bib_fname "dissertation.bib" \\
           --dois_yaml "*/*.yaml" \\
           --replacements_yaml "replacements.yaml" \\
