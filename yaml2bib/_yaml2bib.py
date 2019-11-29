@@ -218,37 +218,55 @@ def yaml2bib(
 @click.option(
     "--bib_fname",
     default="dissertation.bib",
-    help="Output file (default: 'dissertation.bib').",
+    help="Output file. (default: 'dissertation.bib')",
 )
 @click.option(
     "--dois_yaml",
-    default="*/*.yaml",
-    help="The `key: doi` YAML file, may contain wildcards (*) (default: '*/*.yaml').",
+    default="bib.yaml",
+    help=(
+        "The `key: doi` YAML file, may contain wildcards (*). "
+        "(default: 'bib.yaml' ,example: '*/*.yaml')"
+    ),
 )
 @click.option(
     "--replacements_yaml",
-    default="replacements.yaml",
-    help="Replacements to perform, might be None (default: 'replacements.yaml').",
+    default=None,
+    help=(
+        "Replacements to perform, might be None. "
+        "(default: None, example: 'replacements.yaml')"
+    ),
 )
 @click.option(
     "--static_bib",
-    default="chapter_*/not_on_crossref.bib",
-    help="Static bib entries, might be None, may contain wildcards (*) (default: 'chapter_*/not_on_crossref.bib').",
+    default=None,
+    help=(
+        "Static bib entries, might be None, may contain wildcards (*). "
+        "(default: None, example: 'chapter_*/not_on_crossref.bib')"
+    ),
 )
 @click.option(
     "--doi2bib_database",
     default="yaml2bib-doi2bib.db",
-    help="The doi2bib database folder 📁 to not query doi.org more than needed.",
+    help=(
+        "The doi2bib database folder 📁 to not query doi.org more than needed. "
+        "(default: 'yaml2bib-doi2bib.db')"
+    ),
 )
 @click.option(
     "--crossref_database",
     default="yaml2bib-crossref.db",
-    help="The Crossref database folder 📁 to not query crossref.org more than needed.",
+    help=(
+        "The Crossref database folder 📁 to not query crossref.org more than needed. "
+        "(default: 'yaml2bib-doi2bib.db')"
+    ),
 )
 @click.option(
     "--email",
-    default="basnijholt@gmail.com",
-    help="E-mail 📧 for crossref.org, such that one can make more API calls without getting blocked.",
+    default="anonymous",
+    help=(
+        "E-mail 📧 for crossref.org, such that one can make more API calls "
+        "without getting blocked. (default: 'anonymous', example: 'bas@nijho.lt')"
+    ),
 )
 def cli(
     bib_fname,
