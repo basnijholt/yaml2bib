@@ -209,25 +209,25 @@ def yaml2bib(
     ----------
     bib_fname: str
         default="dissertation.bib",
-        help="Output file. (default: 'dissertation.bib')",
+        help="Output file. (default: ``'dissertation.bib'``)",
     dois_yaml: str
         The `key: doi` YAML file, may contain wildcards (*).
-        (default: 'bib.yaml' ,example: '*/*.yaml')
+        (default: ``'bib.yaml'`` ,example: ``'*/*.yaml'``)
     replacements_yaml: str
-        Replacements to perform, might be None.
-        (default: None, example: 'replacements.yaml')
+        Replacements to perform, might be ``None``.
+        (default: ``None``, example: ``'replacements.yaml'``)
     static_bib: str
-        Static bib entries, might be None, may contain wildcards (*).
-        (default: None, example: 'chapter_*/not_on_crossref.bib')
+        Static bib entries, might be ``None``, may contain wildcards (*).
+        (default: ``None``, example: ``'chapter_*/not_on_crossref.bib'``)
     doi2bib_database: str
         The doi2bib database folder 📁 to not query doi.org more than needed.
-        (default: 'yaml2bib-doi2bib.db')
+        (default: ``'yaml2bib-doi2bib.db'``)
     crossref_database: str
         The Crossref database folder 📁 to not query crossref.org more than needed.
-        (default: 'yaml2bib-doi2bib.db')
+        (default: ``'yaml2bib-doi2bib.db'``)
     email: str
         E-mail 📧 for crossref.org, such that one can make more API calls without
-        getting blocked.(default: 'anonymous', example: 'bas@nijho.lt')
+        getting blocked.(default: ``'anonymous'``, example: ``'bas@nijho.lt'``)
 
     Returns
     -------
