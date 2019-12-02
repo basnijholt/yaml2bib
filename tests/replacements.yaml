@@ -14,36 +14,18 @@ replacements:
 
 journals:
   Advanced Materials: Adv. Mater.
-  Annals of Physics: Ann. Phys.
   Applied Physics Letters: Appl. Phys. Lett.
-  JETP Lett: JETP Lett.
-  Journal de Physique: J. Phys.
   Journal of Computational Physics: J. Comput. Phys.
-  Journal of Experimental and Theoretical Physics: J. Exp. Theor. Phys.
   Journal of Low Temperature Physics: J. Low Temp. Phys.
-  'Journal of Physics A: Mathematical and Theoretical': 'J. Phys. A: Math. Theor.'
-  'Journal of Physics: Condensed Matter': 'J. Phys.: Condens. Matter'
-  Nano Letters: Nano Lett.
   Nature Communications: Nat. Commun.
   Nature Materials: Nat. Mater.
   Nature Nanotechnology: Nat. Nanotechnol.
   Nature Physics: Nat. Phys.
-  New Journal of Physics: New J. Phys.
-  Physical Review B: Phys. Rev. B
-  Physical Review Letters: Phys. Rev. Lett.
-  Physical Review X: Phys. Rev. X
-  Physical Review: Phys. Rev.
   Physics-Uspekhi: Phys. Usp.
-  Reports on Progress in Physics: Rep. Prog. Phys.
   Review of Scientific Instruments: Rev. Sci. Instrum.
-  Reviews of Modern Physics: Rev. Mod. Phys.
-  Science Advances: Sci. Adv.
   Scientific Reports: Sci. Rep.
-  Semiconductor Science and Technology: Semicond. Sci. Technol.
-  Annual Review of Condensed Matter Physics: Annu. Rev. Condens. Matter Phys.
   '{EPL} (Europhysics Letters)': '{EPL}'
   Nature Reviews Materials: Nat. Rev. Mater.
   Physics Letters: Phys. Lett.
-  The European Physical Journal B: Eur. Phys. J. B
   '{SIAM} Journal on Numerical Analysis': '{SIAM} J. Numer. Anal.'
   '{AIP} Conference Proceedings': '{AIP} Conf. Proc.'
