@@ -225,8 +225,8 @@ def yaml2bib(
         The Crossref database folder 📁 to not query crossref.org more than needed.
         (default: ``'yaml2bib-doi2bib.db'``)
     email: str
-        E-mail 📧 for crossref.org, such that one can make more API calls without
-        getting blocked. (default: ``'anonymous'``, example: ``'bas@nijho.lt'``)
+        E-mail 📧 for crossref.org, such that one can make faster API.
+        (default: ``'anonymous'``, example: ``'bas@nijho.lt'``)
 
     Returns
     -------
