@@ -323,3 +323,8 @@ def cli(
         crossref_database=crossref_database,
         email=email,
     )
+
+
+if __name__ == "__main__":
+
+    cli()
