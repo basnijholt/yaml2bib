@@ -60,6 +60,9 @@ yaml2bib(
 )
 ```
 
+### Full example
+See the [`examples`](examples) directory for a full example.
+
 ## License
 MIT License
 
