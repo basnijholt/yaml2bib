@@ -5,12 +5,43 @@ replacements:
   Josephson: '{J}osephson'
   Kitaev: '{K}itaev'
   Kramers: '{K}ramers'
+  Zeeman: '{Z}eeman'
+  Abelian: '{A}belian'
   Land{\'{e}}{gFactors}: Land{\'{e}} {$g$} Factors  # fix for PhysRevLett.96.026804
   Majorana: '{M}ajorana'
   apx$\mathplus$ipysuperconductor: a $p_x + i p_y$ superconductor  # fix for 10.1103/physrevb.73.220502
   apx$\mathplus${ipySuperfluid}: $p_x + i p_y$ superfluid  # fix for 10.1103/physrevlett.98.010506
   a{\r}: \r{a}  # "Nyga{\r}rd" -> "Nyg\r{a}rd", bug in doi.org
   metastable0and$\uppi$states: metastable $0$ and $\pi$ states  # fix for 10.1103/physrevb.63.214512
+  'Nijholt, Bas and Weston, Joseph and {JornHoofwijk} and Akhmerov, Anton and Antipov, Andrey E.': Nijholt, Bas and Weston, Joseph and Hoofwijk, Jorn and Akhmerov, Anton  # fix for 10.5281/ZENODO.1182437
+  NIRA DYN and DAVID LEVIN and SAMUEL RIPPA: Nira Dyn and David Levin and Samuel Rippa  # fix for 10.1093/imanum/10.1.137
+  Vieweg$\mathplus$Teubner Verlag: Vieweg+Teubner Verlag
+  ofNSnanowire: of NS nanowire
+  Hamiltionian: '{H}amiltionian'
+  Poisson: '{P}oisson'
+  'Schr\"{o}dinger': '{S}chr\"{o}dinger'
+  '-Al': '-{A}l'
+  'Al-': '{A}l-'
+  'Al{\textendash}': '{Al}{\textendash}'
+  '-Nb': '-{N}b'
+  'Nb-': '{N}b-'
+  '1D': '{1D}'
+  '2D': '{2D}'
+  Fraunhofer: '{Fraunhofer}'
+  Fermi: '{Fermi}'
+  Rashba: '{Rashba}'
+  Ginzburg--Landau: '{Ginzburg--Landau}'
+  '{TOPOLOGICAL} {ORDERS} {IN} {RIGID} {STATES}': Topological orders in rigid states
+  Hall: '{Hall}'
+  inp-Wave: in $p$-Wave
+  S-N-S: '{S-N-S}'
+  p-Wave: '$p$-wave'
+  Feshbach: '{F}eshbach'
+  'the0-$\uppi$Crossover': 'the $0-\uppi$ crossover'
+  'Nb{\textendash}{InSb} Nanowire{\textendash}Nb': '{Nb}{\textendash}{InSb} Nanowire{\textendash}{Nb}'
+  '$\upphi$0-junction': '$\upphi_0$-junction'
+  Bayesian: '{Bayesian}'
+  WEN: Wen
 
 journals:
   Advanced Materials: Adv. Mater.
@@ -27,5 +58,12 @@ journals:
   '{EPL} (Europhysics Letters)': '{EPL}'
   Nature Reviews Materials: Nat. Rev. Mater.
   Physics Letters: Phys. Lett.
+  Physics Today: Phys. Today
   '{SIAM} Journal on Numerical Analysis': '{SIAM} J. Numer. Anal.'
   '{AIP} Conference Proceedings': '{AIP} Conf. Proc.'
+  '{IMA} Journal of Numerical Analysis': '{IMA} J. Appl. Math.'
+  Journal of Computational and Applied Mathematics: J. Comput. Appl. Math
+  '{SciPost} Physics': '{SciPost} Phys.'
+  '{ACM} Transactions on Graphics': '{ACM} Trans. Graph.'
+  Computer Graphics Forum: Comput. Graphics Forum
+  '{ACM} Transactions on Mathematical Software': '{ACM} Trans. Math. Softw.'

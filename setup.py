@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 import sys
-from setuptools import find_packages, setup
 
+from setuptools import find_packages, setup
 
 if sys.version_info < (3, 6):
     print("yaml2bib requires Python 3.6 or above.")
@@ -19,6 +19,7 @@ extras_require = dict(
         "sphinxcontrib.apidoc",  # run sphinx-apidoc when building docs
     ],
     dev=["pre-commit", "bump2version"],
+    test=["pytest", "pytest-cov", "tox"],
 )
 
 install_requires = [
