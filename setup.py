@@ -15,7 +15,7 @@ extras_require = dict(
     docs=[
         "sphinx",
         "sphinx-rtd-theme",
-        "m2r",  # markdown support
+        "m2r @ git+https://github.com/crossnox/m2r@dev#egg=m2r",  # markdown support, see https://github.com/sphinx-doc/sphinx/issues/7420#issuecomment-610958327
         "sphinxcontrib.apidoc",  # run sphinx-apidoc when building docs
     ],
     dev=["pre-commit", "bump2version"],
