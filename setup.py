@@ -36,7 +36,7 @@ install_requires = [
 setup(
     name="yaml2bib",
     python_requires=">=3.6",
-    version="0.1.3",
+    version="0.1.4.dev0",
     classifiers=[
         "Intended Audience :: Science/Research",
         "Operating System :: OS Independent",
