@@ -11,6 +11,7 @@ import crossref.restful
 import diskcache
 import requests
 import yaml
+from pylatexenc.latexencode import unicode_to_latex
 from tqdm import tqdm
 
 
@@ -43,13 +44,8 @@ def cached_crossref(doi: str, works: crossref.restful.Works, database: str) -> s
 def replace_special_letters(x):
     # XXX: I am not sure whether these substitutions are needed.
     # the problem seemed to be the utf-8 `requests.get` encoding.
-    to_replace = [("ö", r"\"{o}"), ("ü", r"\"{u}"), ("ë", r"\"{e}"), ("ï", r"\"{i}")]
 
-    for old, new in to_replace:
-        x = x.replace(old, new)
-        x = x.replace(old.upper(), new.upper())
-
-    return x
+    return unicode_to_latex(x, non_ascii_only=True)
 
 
 def replace_key(
@@ -333,7 +329,6 @@ def cli(
         crossref_database=crossref_database,
         email=email,
     )
-
 
 if __name__ == "__main__":
 
