@@ -19,7 +19,7 @@ jobs:
           path: |
             tests/yaml2bib-crossref.db
             tests/yaml2bib-doi2bib.db
-          key: ${{ matrix.python-version }}-databases
+          key: ${{ matrix.python-version }}-${{ matrix.os }}-databases
       - shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
