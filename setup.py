@@ -21,7 +21,7 @@ extras_require = dict(
     dev=["pre-commit", "bump2version"],
 )
 
-install_requires = ["Click", "crossrefapi", "diskcache", "requests", "pyyaml", "tqdm"]
+install_requires = ["Click", "crossrefapi", "diskcache", "requests", "pyyaml", "tqdm", "pylatexenc"]
 
 
 setup(
