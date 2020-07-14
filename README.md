@@ -61,7 +61,7 @@ yaml2bib(
 ```
 
 ### Full example
-See the [`examples`](examples) directory for a full example.
+See the [`examples`](https://github.com/basnijholt/yaml2bib/tree/master/examples) directory for a full example.
 
 ## License
 MIT License
