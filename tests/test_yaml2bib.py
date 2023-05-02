@@ -1,7 +1,10 @@
+"""Tests for yaml2bib."""
+
 import yaml2bib
 
 
-def test_import():
+def test_yaml2bib() -> None:
+    """Test yaml2bib on examples."""
     yaml2bib.yaml2bib(
         bib_fname="examples/example.bib",
         dois_yaml="examples/example.yaml",
