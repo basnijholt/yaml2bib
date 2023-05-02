@@ -22,3 +22,6 @@ repos:
     hooks:
       - id: mypy
         exclude: docs/source/conf.py
+        additional_dependencies:
+          - types-requests
+          - types-PyYAML
