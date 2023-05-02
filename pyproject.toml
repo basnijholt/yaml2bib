@@ -112,6 +112,11 @@ max-complexity = 18
 
 [tool.versioningit]
 
+[tool.versioningit.vcs]
+method = "git"
+match = ["v*"]
+default-tag = "0.0.0"
+
 [tool.versioningit.onbuild]
 build-file = "yaml2bib/_version.py"
 source-file = "yaml2bib/_version.py"
