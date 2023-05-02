@@ -1,7 +1,7 @@
 # 📘 `yaml2bib`: Convert YAML to BibTeX with Correct Journal Abbreviations Using Only DOIs 🚀
 
 [![license](https://img.shields.io/github/license/basnijholt/yaml2bib)](https://github.com/basnijholt/yaml2bib/blob/master/LICENSE)
-[![tests](https://github.com/basnijholt/yaml2bib/workflows/tests/badge.svg)](https://github.com/basnijholt/yaml2bib/actions?query=workflow%3Atests)
+[![tests](https://github.com/basnijholt/yaml2bib/workflows/pytest/badge.svg)](https://github.com/basnijholt/yaml2bib/actions?query=workflow%3Apytest)
 [![codecov](https://img.shields.io/codecov/c/github/basnijholt/yaml2bib)](https://codecov.io/gh/basnijholt/yaml2bib)
 [![docs](https://img.shields.io/readthedocs/yaml2bib)](https://yaml2bib.readthedocs.io)
 [![version](https://img.shields.io/pypi/v/yaml2bib)](https://pypi.org/project/yaml2bib/)
