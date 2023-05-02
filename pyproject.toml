@@ -1,3 +1,118 @@
 [build-system]
-requires = [ "setuptools >= 35.0.2", "wheel >= 0.29.0"]
 build-backend = "setuptools.build_meta"
+requires = ["setuptools ~= 65.0.0", "versioningit ~= 2.2.0", "wheel"]
+
+[project]
+name = "yaml2bib"
+dynamic = ["version"]
+description = "Convert a yaml file containing (key -> DOI) pairs to bib file with the correct journal abbreviations."
+maintainers = [{ name = "Bas Nijholt", email = "bas@nijho.lt" }]
+license = { text = "MIT" }
+requires-python = ">=3.8"
+classifiers = [
+        "Intended Audience :: Science/Research",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3",
+        "Topic :: Scientific/Engineering",
+        "Topic :: Utilities",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "Click",
+    "crossrefapi",
+    "diskcache",
+    "requests",
+    "pylatexenc",
+    "pyyaml",
+    "tqdm",
+    "versioningit",
+]
+
+[project.scripts]
+yaml2bib = "yaml2bib:_yaml2bib.cli"
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-cov", "tox"]
+dev = ["pre-commit", "bump2version"]
+docs = [
+    "sphinx",
+    "sphinx-rtd-theme",
+    "m2r @ git+https://github.com/crossnox/m2r@dev#egg=m2r", # markdown support, see https://github.com/sphinx-doc/sphinx/issues/7420#issuecomment-610958327
+    "sphinxcontrib.apidoc",                                  # run sphinx-apidoc when building docs
+
+]
+
+[project.urls]
+homepage = "https://yaml2bib.readthedocs.io/en/latest/"
+documentation = "https://yaml2bib.readthedocs.io/"
+repository = "https://github.com/basnijholt/yaml2bib"
+
+[project.readme]
+content-type = "text/markdown"
+file = "README.md"
+
+[tool.setuptools.packages.find]
+include = ["yaml2bib.*", "yaml2bib"]
+
+[tool.pytest.ini_options]
+testpaths = ["yaml2bib"]
+addopts = "--durations=5 --cov --cov-append --cov-fail-under=70 -vvv --cov-report="
+norecursedirs = ["docs"]
+
+[tool.coverage.paths]
+source = ["yaml2bib", ".nox/py*/lib/python*/site-packages"]
+
+[tool.coverage.run]
+branch = true
+parallel = true
+source = ["yaml2bib"]
+
+[tool.coverage.report]
+show_missing = true
+precision = 2
+
+[tool.coverage.xml]
+output = ".coverage.xml"
+
+[tool.mypy]
+ignore_missing_imports = true
+python_version = "3.8"
+
+[tool.ruff]
+line-length = 150
+target-version = "py39"
+select = ["B", "C", "E", "F", "W", "T", "B9", "I", "UP"]
+ignore = [
+    "T20",     # flake8-print
+    "ANN101",  # Missing type annotation for {name} in method
+    "S101",    # Use of assert detected
+    "PD901",   # df is a bad variable name. Be kinder to your future self.
+    "ANN401",  # Dynamically typed expressions (typing.Any) are disallowed in {name}
+    "D402",    # First line should not be the function's signature
+    "PLW0603", # Using the global statement to update `X` is discouraged
+    "D401",    # First line of docstring should be in imperative mood
+]
+
+[tool.ruff.per-file-ignores]
+"tests/*" = ["SLF001"]
+
+[tool.ruff.mccabe]
+max-complexity = 18
+
+[tool.versioningit]
+
+[tool.versioningit.vcs]
+method = "git"
+match = ["v*"]
+default-tag = "0.0.0"
+
+[tool.versioningit.onbuild]
+build-file = "yaml2bib/_version.py"
+source-file = "yaml2bib/_version.py"
