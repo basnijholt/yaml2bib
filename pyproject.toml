@@ -62,9 +62,14 @@ file = "README.md"
 include = ["yaml2bib.*", "yaml2bib"]
 
 [tool.pytest.ini_options]
-testpaths = ["yaml2bib"]
-addopts = "--durations=5 --cov --cov-append --cov-fail-under=70 -vvv --cov-report="
-norecursedirs = ["docs"]
+addopts = """
+    -vvv
+    --cov=yaml2bib
+    --cov-report term
+    --cov-report html
+    --cov-report xml
+    --cov-fail-under=70
+"""
 
 [tool.coverage.paths]
 source = ["yaml2bib", ".nox/py*/lib/python*/site-packages"]
