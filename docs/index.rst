@@ -10,5 +10,4 @@
    :hidden:
    :caption: Contents:
 
-   CHANGELOG
    reference/yaml2bib
