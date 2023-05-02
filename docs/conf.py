@@ -18,7 +18,7 @@ import yaml2bib
 # -- Project information -----------------------------------------------------
 
 project = "yaml2bib"
-copyright = "2019, Bas Nijholt"
+copyright = "2019-2023, Bas Nijholt"
 author = "Bas Nijholt"
 version = yaml2bib.__version__
 release = yaml2bib.__version__
