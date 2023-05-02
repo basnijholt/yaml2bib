@@ -40,7 +40,7 @@ yaml2bib = "yaml2bib:_yaml2bib.cli"
 
 [project.optional-dependencies]
 test = ["pytest", "pytest-cov", "tox"]
-dev = ["pre-commit", "bump2version"]
+dev = ["pre-commit"]
 docs = [
     "sphinx",
     "sphinx-rtd-theme",
