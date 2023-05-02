@@ -61,7 +61,20 @@ yaml2bib(
 ```
 
 ### Full example
+
 See the [`examples`](https://github.com/basnijholt/yaml2bib/tree/master/examples) directory for a full example.
+
+Convert with:
+
+```bash
+yaml2bib \
+  --bib_fname "example.bib" \
+  --dois_yaml "example.yaml" \
+  --replacements_yaml "replacements.yaml" \
+  --static_bib "not_on_crossref.bib" \
+  --email "bas@nijho.lt"
+```
+
 
 ## License
 MIT License
