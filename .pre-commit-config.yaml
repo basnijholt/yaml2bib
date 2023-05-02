@@ -1,43 +1,27 @@
 repos:
-- hooks:
-  - exclude: .bumpversion.cfg
-    id: trailing-whitespace
-  - exclude: .bumpversion.cfg
-    id: end-of-file-fixer
-  - id: check-docstring-first
-  - id: check-yaml
-  - id: debug-statements
-  - id: check-ast
-  repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.4.0
-- hooks:
-  - args:
-    - --config=tox.ini
-    id: flake8
-  repo: https://gitlab.com/pycqa/flake8
-  rev: 3.8.3
-- hooks:
-  - id: black
-    language_version: python3.7
-  repo: https://github.com/ambv/black
-  rev: 23.3.0
-- hooks:
-  - args:
-    - --py37-plus
-    id: pyupgrade
-  repo: https://github.com/asottile/pyupgrade
-  rev: v3.3.2
-- hooks:
-  - args:
-    - --multi-line=3
-    - --trailing-comma
-    - --force-grid-wrap=0
-    - --use-parentheses
-    - --line-width=88
-    id: isort
-  repo: https://github.com/pre-commit/mirrors-isort
-  rev: v5.10.1
-- hooks:
-  - id: seed-isort-config
-  repo: https://github.com/asottile/seed-isort-config
-  rev: v2.2.0
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-docstring-first
+      - id: check-yaml
+      - id: debug-statements
+      - id: check-ast
+  - repo: https://github.com/psf/black
+    rev: 23.3.0
+    hooks:
+      - id: black-jupyter
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: "v0.0.263"
+    hooks:
+      - id: ruff
+        args: ["--fix"]
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: "v1.2.0"
+    hooks:
+      - id: mypy
+        exclude: docs/source/conf.py
+        additional_dependencies:
+          - types-requests
+          - types-PyYAML

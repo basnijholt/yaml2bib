@@ -1,10 +1,10 @@
-#!/usr/bin/env python3
 """Convert a yaml file to bib file with the correct journal abbreviations."""
+from __future__ import annotations
 
 import contextlib
 import glob
 import os
-from typing import Dict, List, Optional, Tuple
+from typing import Any
 
 import click
 import crossref.restful
@@ -15,22 +15,27 @@ from pylatexenc.latexencode import unicode_to_latex
 from tqdm import tqdm
 
 
-def pages_from_crossref(data, works: crossref.restful.Works) -> str:
+def pages_from_crossref(data: dict[str, Any]) -> str:
     try:
         page = data["article-number"]
     except KeyError:
         if "page" in data:
             page = data["page"].split("-")[0]
         else:
-            raise Exception("No page number found!")
+            msg = "No page number found!"
+            raise KeyError(msg) from None
     return page
 
 
-def journal_from_crossref(data, works: crossref.restful.Works) -> Tuple[str, str]:
+def journal_from_crossref(data: dict[str, Any]) -> tuple[str, str]:
     return data["container-title"][0], data["short-container-title"][0]
 
 
-def cached_crossref(doi: str, works: crossref.restful.Works, database: str) -> str:
+def cached_crossref(
+    doi: str,
+    works: crossref.restful.Works,
+    database: str,
+) -> dict[str, Any]:
     """Look up if this has previously been called."""
     with diskcache.Cache(database) as cache:
         info = cache.get(doi)
@@ -43,10 +48,9 @@ def cached_crossref(doi: str, works: crossref.restful.Works, database: str) -> s
 
 def replace_key(
     key: str,
-    data,
+    data: dict[str, Any],
     bib_entry: str,
-    replacements: List[Tuple[str, str]],
-    works: crossref.restful.Works,
+    replacements: list[tuple[str, str]],
 ) -> str:
     bib_type = bib_entry.split("{")[0]
     bib_context = bib_entry.split(",", maxsplit=1)[1]
@@ -59,7 +63,7 @@ def replace_key(
 
     with contextlib.suppress(Exception):
         # Use the journal abbrv. from crossref, not used if hard coded.
-        to_replace.append(journal_from_crossref(data, works))
+        to_replace.append(journal_from_crossref(data))
 
     for old, new in to_replace:
         bib_context = bib_context.replace(old, new)
@@ -69,7 +73,7 @@ def replace_key(
     if "pages = {" not in result:
         # Add the page number if it's missing
         with contextlib.suppress(Exception):
-            pages = pages_from_crossref(data, works)
+            pages = pages_from_crossref(data)
             lines = result.split("\n")
             lines.insert(2, f"\tpages = {{{pages}}},")
             result = "\n".join(lines)
@@ -82,7 +86,7 @@ def doi2bib(doi: str) -> str:
     print(f"Requesting {doi}")
     url = "http://dx.doi.org/" + doi
     headers = {"accept": "application/x-bibtex"}
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, timeout=60)
     r.encoding = "utf-8"
     return r.text
 
@@ -94,7 +98,7 @@ def cached_doi2bib(doi: str, database: str) -> str:
         if text is not None:
             return text
         text = doi2bib(doi)
-        if text != "" and "<html>" not in text:
+        if text and "<html>" not in text:
             print(f"Succesfully got '{doi}' 🎉")
             cache[doi] = text
         else:
@@ -102,8 +106,8 @@ def cached_doi2bib(doi: str, database: str) -> str:
         return text
 
 
-def combine_yamls(pathname: str) -> Dict[str, str]:
-    mapping: Dict[str, str] = {}
+def combine_yamls(pathname: str) -> dict[str, str]:
+    mapping: dict[str, str] = {}
     for fname in glob.glob(pathname):
         with open(fname) as f:
             for k, v in yaml.safe_load(f).items():
@@ -115,11 +119,10 @@ def combine_yamls(pathname: str) -> Dict[str, str]:
                 else:
                     mapping[k] = v
 
-    dois = dict(sorted(mapping.items()))
-    return dois
+    return dict(sorted(mapping.items()))
 
 
-def parse_doi_yaml(fname: str) -> Dict[str, str]:
+def parse_doi_yaml(fname: str) -> dict[str, str]:
     if os.path.isfile(fname):
         with open(fname) as f:
             return yaml.safe_load(f)
@@ -127,7 +130,7 @@ def parse_doi_yaml(fname: str) -> Dict[str, str]:
         return combine_yamls(fname)
 
 
-def parse_replacements_yaml(fname: Optional[str]) -> List[Tuple[str, str]]:
+def parse_replacements_yaml(fname: str | None) -> list[tuple[str, str]]:
     if fname is None:
         return []
 
@@ -140,7 +143,7 @@ def parse_replacements_yaml(fname: Optional[str]) -> List[Tuple[str, str]]:
     return all_replacements
 
 
-def write_output(entries: List[str], bib_files: List[str], bib_fname: str) -> None:
+def write_output(entries: list[str], bib_files: list[str], bib_fname: str) -> None:
     with open(bib_fname, "w") as outfile:
         outfile.write("@preamble{ {\\providecommand{\\BIBYu}{Yu} } }\n\n")
         for fname in bib_files:
@@ -156,29 +159,27 @@ def write_output(entries: List[str], bib_files: List[str], bib_fname: str) -> No
             outfile.write("\n")
 
 
-def static_bib_entries(pathname: Optional[str]) -> List[str]:
+def static_bib_entries(pathname: str | None) -> list[str]:
     if pathname is None:
         return []
-    elif os.path.isfile(pathname):
+    if os.path.isfile(pathname):
         return [pathname]
-    else:
-        return glob.glob(pathname)
+    return glob.glob(pathname)
 
 
 def get_bib_entries(
-    dois: Dict[str, str],
-    replacements: List[Tuple[str, str]],
+    dois: dict[str, str],
+    replacements: list[tuple[str, str]],
     doi2bib_database: str,
     crossref_database: str,
     works: crossref.restful.Works,
-) -> List[str]:
+) -> list[str]:
     return [
         replace_key(
             key,
             data=cached_crossref(doi, works, crossref_database),
             bib_entry=cached_doi2bib(doi, doi2bib_database),
             replacements=replacements,
-            works=works,
         )
         for key, doi in tqdm(dois.items())
     ]
@@ -187,13 +188,14 @@ def get_bib_entries(
 def yaml2bib(
     bib_fname: str,
     dois_yaml: str,
-    replacements_yaml: Optional[str],
-    static_bib: Optional[str],
+    *,
+    replacements_yaml: str | None,
+    static_bib: str | None,
     doi2bib_database: str,
     crossref_database: str,
     email: str,
 ) -> None:
-    """Convert a yaml file to bib file with the correct journal abbreviations.
+    r"""Convert a yaml file to bib file with the correct journal abbreviations.
 
     Parameters
     ----------
@@ -241,7 +243,11 @@ def yaml2bib(
     dois = parse_doi_yaml(dois_yaml)
     replacements = parse_replacements_yaml(replacements_yaml)
     entries = get_bib_entries(
-        dois, replacements, doi2bib_database, crossref_database, works
+        dois,
+        replacements,
+        doi2bib_database,
+        crossref_database,
+        works,
     )
     bib_files = static_bib_entries(static_bib)
     write_output(entries, bib_files, bib_fname)
@@ -301,17 +307,17 @@ def yaml2bib(
         "without getting blocked. (default: 'anonymous', example: 'bas@nijho.lt')"
     ),
 )
-def cli(
-    bib_fname,
-    dois_yaml,
-    replacements_yaml,
-    static_bib,
-    doi2bib_database,
-    crossref_database,
-    email,
-):
+def cli(  # noqa: PLR0913
+    bib_fname: str,
+    dois_yaml: str,
+    replacements_yaml: str,
+    static_bib: str,
+    doi2bib_database: str,
+    crossref_database: str,
+    email: str,
+) -> None:
     click.echo(
-        "Convert a yaml file to bib file with the correct journal abbreviations."
+        "Convert a yaml file to bib file with the correct journal abbreviations.",
     )
 
     yaml2bib(
@@ -326,5 +332,4 @@ def cli(
 
 
 if __name__ == "__main__":
-
     cli()
