@@ -4,7 +4,7 @@
 import contextlib
 import glob
 import os
-from typing import Dict, List, Optional, Tuple
+from typing import Optional
 
 import click
 import crossref.restful
@@ -26,7 +26,7 @@ def pages_from_crossref(data, works: crossref.restful.Works) -> str:
     return page
 
 
-def journal_from_crossref(data, works: crossref.restful.Works) -> Tuple[str, str]:
+def journal_from_crossref(data, works: crossref.restful.Works) -> tuple[str, str]:
     return data["container-title"][0], data["short-container-title"][0]
 
 
@@ -45,7 +45,7 @@ def replace_key(
     key: str,
     data,
     bib_entry: str,
-    replacements: List[Tuple[str, str]],
+    replacements: list[tuple[str, str]],
     works: crossref.restful.Works,
 ) -> str:
     bib_type = bib_entry.split("{")[0]
@@ -102,8 +102,8 @@ def cached_doi2bib(doi: str, database: str) -> str:
         return text
 
 
-def combine_yamls(pathname: str) -> Dict[str, str]:
-    mapping: Dict[str, str] = {}
+def combine_yamls(pathname: str) -> dict[str, str]:
+    mapping: dict[str, str] = {}
     for fname in glob.glob(pathname):
         with open(fname) as f:
             for k, v in yaml.safe_load(f).items():
@@ -119,7 +119,7 @@ def combine_yamls(pathname: str) -> Dict[str, str]:
     return dois
 
 
-def parse_doi_yaml(fname: str) -> Dict[str, str]:
+def parse_doi_yaml(fname: str) -> dict[str, str]:
     if os.path.isfile(fname):
         with open(fname) as f:
             return yaml.safe_load(f)
@@ -127,7 +127,7 @@ def parse_doi_yaml(fname: str) -> Dict[str, str]:
         return combine_yamls(fname)
 
 
-def parse_replacements_yaml(fname: Optional[str]) -> List[Tuple[str, str]]:
+def parse_replacements_yaml(fname: Optional[str]) -> list[tuple[str, str]]:
     if fname is None:
         return []
 
@@ -140,7 +140,7 @@ def parse_replacements_yaml(fname: Optional[str]) -> List[Tuple[str, str]]:
     return all_replacements
 
 
-def write_output(entries: List[str], bib_files: List[str], bib_fname: str) -> None:
+def write_output(entries: list[str], bib_files: list[str], bib_fname: str) -> None:
     with open(bib_fname, "w") as outfile:
         outfile.write("@preamble{ {\\providecommand{\\BIBYu}{Yu} } }\n\n")
         for fname in bib_files:
@@ -156,7 +156,7 @@ def write_output(entries: List[str], bib_files: List[str], bib_fname: str) -> No
             outfile.write("\n")
 
 
-def static_bib_entries(pathname: Optional[str]) -> List[str]:
+def static_bib_entries(pathname: Optional[str]) -> list[str]:
     if pathname is None:
         return []
     elif os.path.isfile(pathname):
@@ -166,12 +166,12 @@ def static_bib_entries(pathname: Optional[str]) -> List[str]:
 
 
 def get_bib_entries(
-    dois: Dict[str, str],
-    replacements: List[Tuple[str, str]],
+    dois: dict[str, str],
+    replacements: list[tuple[str, str]],
     doi2bib_database: str,
     crossref_database: str,
     works: crossref.restful.Works,
-) -> List[str]:
+) -> list[str]:
     return [
         replace_key(
             key,
@@ -326,5 +326,4 @@ def cli(
 
 
 if __name__ == "__main__":
-
     cli()
