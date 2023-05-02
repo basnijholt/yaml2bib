@@ -10,19 +10,17 @@ maintainers = [{ name = "Bas Nijholt", email = "bas@nijho.lt" }]
 license = { text = "MIT" }
 requires-python = ">=3.8"
 classifiers = [
-        "Intended Audience :: Science/Research",
-        "Operating System :: OS Independent",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 3",
-        "Topic :: Scientific/Engineering",
-        "Topic :: Utilities",
-        "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
-        "Programming Language :: Python :: 3.10",
-        "Programming Language :: Python :: 3.11",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Utilities",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
 ]
 dependencies = [
     "Click",
@@ -44,9 +42,8 @@ dev = ["pre-commit"]
 docs = [
     "sphinx",
     "sphinx-rtd-theme",
-    "m2r", # markdown support, see https://github.com/sphinx-doc/sphinx/issues/7420#issuecomment-610958327
-    "sphinxcontrib.apidoc",                                  # run sphinx-apidoc when building docs
-
+    "m2r",                  # markdown support, see https://github.com/sphinx-doc/sphinx/issues/7420#issuecomment-610958327
+    "sphinxcontrib.apidoc", # run sphinx-apidoc when building docs
 ]
 
 [project.urls]
@@ -92,7 +89,7 @@ python_version = "3.8"
 
 [tool.ruff]
 line-length = 150
-target-version = "py39"
+target-version = "py38"
 select = ["ALL"]
 ignore = [
     "T20",     # flake8-print
