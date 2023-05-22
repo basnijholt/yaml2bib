@@ -101,6 +101,7 @@ ignore = [
     "PLW0603", # Using the global statement to update `X` is discouraged
     "D401",    # First line of docstring should be in imperative mood
     "PTH",     # Prefer Pathlib
+    "PLR0913", # Too many arguments to function call (N > 5)
 ]
 
 [tool.ruff.per-file-ignores]
