@@ -307,7 +307,7 @@ def yaml2bib(
         "without getting blocked. (default: 'anonymous', example: 'bas@nijho.lt')"
     ),
 )
-def cli(  # noqa: PLR0913
+def cli(
     bib_fname: str,
     dois_yaml: str,
     replacements_yaml: str,
