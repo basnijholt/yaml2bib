@@ -1,4 +1,5 @@
 """Convert a yaml file to bib file with the correct journal abbreviations."""
+
 from __future__ import annotations
 
 import contextlib
