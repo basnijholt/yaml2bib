@@ -82,7 +82,7 @@ yaml2bib(
 
 ## 🌟 Full Example
 
-Check out the [`examples`]([https://github.com/basnijholt/yaml](https://github.com/basnijholt/yaml)
+Check out the [`examples`](https://github.com/basnijholt/yaml)
 
 Convert with:
 
