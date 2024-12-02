@@ -42,7 +42,7 @@ dev = ["pre-commit"]
 docs = [
     "sphinx",
     "sphinx-rtd-theme",
-    "m2r2",                  # markdown support, see https://github.com/sphinx-doc/sphinx/issues/7420#issuecomment-610958327
+    "myst-parser",
     "sphinxcontrib.apidoc", # run sphinx-apidoc when building docs
 ]
 
