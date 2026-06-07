@@ -31,4 +31,4 @@ jobs:
           pytest
       - name: Upload coverage to Codecov
         if: matrix.python-version == '3.11'
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v7
