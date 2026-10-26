@@ -53,7 +53,7 @@ def replace_key(
     bib_entry: str,
     replacements: list[tuple[str, str]],
 ) -> str:
-    bib_type = bib_entry.split("{")[0]
+    bib_type = bib_entry.split("{", maxsplit=1)[0]
     bib_context = bib_entry.split(",", maxsplit=1)[1]
     # Now only modify `bib_context` because we don't want to touch the key.
 
